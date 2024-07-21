@@ -1,0 +1,20 @@
+Section .text
+Global _start
+
+_start:
+Mov ebx,fibbo
+mov ecx,9
+Mov edx,[ebx]
+Sequence:
+add eax,edx
+add ebx,4
+Mov edx,[ebx]
+Loop Sequence
+Mov [result], eax
+Mov eax,1
+Int 0x80
+Section .data
+fibbo DD 0,1,1,2,3,5,8,13,21,34
+
+Segment .bss
+result resw 1
