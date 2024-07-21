@@ -1,0 +1,21 @@
+global _start
+
+_start:
+
+Mov eax,[Odd]
+
+OddINC:
+Inc eax
+Inc eax
+Cmp eax,21
+Mov [result], eax
+JL OddINC
+Mov eax,1
+Int 0x80
+
+Section .text
+Odd DD 1
+
+Segment .bss
+result resw 1
+
