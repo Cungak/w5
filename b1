@@ -1,0 +1,15 @@
+section .text
+global _start
+
+_start:
+mov ebx,10
+label:
+dec ebx
+loop label
+mov [result],ebx
+mov ebx,1
+mov eax,1
+int 0x80
+
+Segment .bss
+result resb 1
