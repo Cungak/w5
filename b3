@@ -1,0 +1,38 @@
+Section .text
+Global _start
+
+_start:
+
+Mov ecx,Array
+Mov ebx,0
+Mov ebx,[ecx]
+Add ecx,4
+Cmp ebx,[ecx]
+JG compare1
+Mov ebx,[ecx]
+JMP compare1
+
+compare1:
+Add ecx,4
+Cmp ebx,[ecx]
+JG compare2
+Mov ebx,[ecx]
+JMP compare2
+
+compare2:
+Add ecx,4
+Cmp ebx,[ecx]
+JG exit
+Mov eax,[ecx]
+JMP exit
+
+exit:
+Mov [Result],eax
+Mov eax,1
+Int 0x80
+
+Section .data
+Array DD 5,22,8,30
+
+Segment .bss
+Result resb 1
