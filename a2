@@ -1,0 +1,42 @@
+Section .text
+Global _start
+
+_start:
+
+Mov eax,[var1]
+Cmp eax,[var2]
+JG Big1
+Mov eax,[var2]
+JMP Big1
+
+Big1:
+Cmp eax,[var3]
+JG Big2
+Mov eax,[var3]
+JMP Big2
+
+Big2:
+Cmp eax,[var4]
+JG Big3
+Mov eax,[var4]
+JMP Big3
+
+Big3:
+Cmp eax,[var5]
+JG Exit
+Mov eax,[var5]
+JMP Exit
+
+Exit:
+Mov [biggest],eax
+Mov eax,1
+Int 0x80
+
+Section .data
+var1 DD 10
+var2 DD 20
+var3 DD 5
+var4 DD 25
+var5 DD 50
+segment .bss
+biggest resb 1
